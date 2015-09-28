@@ -13763,6 +13763,7 @@ qemuDomainSnapshotPrepareDiskExternalBackingInactive(virDomainDiskDefPtr disk)
         case VIR_STORAGE_NET_PROTOCOL_NONE:
         case VIR_STORAGE_NET_PROTOCOL_NBD:
         case VIR_STORAGE_NET_PROTOCOL_RBD:
+        case VIR_STORAGE_NET_PROTOCOL_SHAKE:
         case VIR_STORAGE_NET_PROTOCOL_SHEEPDOG:
         case VIR_STORAGE_NET_PROTOCOL_GLUSTER:
         case VIR_STORAGE_NET_PROTOCOL_ISCSI:
@@ -13826,6 +13827,7 @@ qemuDomainSnapshotPrepareDiskExternalOverlayActive(virDomainSnapshotDiskDefPtr d
         case VIR_STORAGE_NET_PROTOCOL_NONE:
         case VIR_STORAGE_NET_PROTOCOL_NBD:
         case VIR_STORAGE_NET_PROTOCOL_RBD:
+        case VIR_STORAGE_NET_PROTOCOL_SHAKE:
         case VIR_STORAGE_NET_PROTOCOL_SHEEPDOG:
         case VIR_STORAGE_NET_PROTOCOL_ISCSI:
         case VIR_STORAGE_NET_PROTOCOL_HTTP:
@@ -13969,6 +13971,7 @@ qemuDomainSnapshotPrepareDiskInternal(virConnectPtr conn,
         case VIR_STORAGE_NET_PROTOCOL_NONE:
         case VIR_STORAGE_NET_PROTOCOL_NBD:
         case VIR_STORAGE_NET_PROTOCOL_RBD:
+        case VIR_STORAGE_NET_PROTOCOL_SHAKE:
         case VIR_STORAGE_NET_PROTOCOL_SHEEPDOG:
         case VIR_STORAGE_NET_PROTOCOL_GLUSTER:
         case VIR_STORAGE_NET_PROTOCOL_ISCSI:

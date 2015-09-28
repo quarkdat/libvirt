@@ -3247,6 +3247,7 @@ qemuNetworkDriveGetPort(int protocol,
             return 0;
 
         case VIR_STORAGE_NET_PROTOCOL_RBD:
+        case VIR_STORAGE_NET_PROTOCOL_SHAKE:
         case VIR_STORAGE_NET_PROTOCOL_LAST:
         case VIR_STORAGE_NET_PROTOCOL_NONE:
             /* not applicable */
@@ -3411,6 +3412,18 @@ qemuBuildNetworkDriveURI(virStorageSourcePtr src,
                 goto cleanup;
             }
 
+            break;
+
+        case VIR_STORAGE_NET_PROTOCOL_SHAKE:
+            if (strchr(src->path, ':')) {
+                virReportError(VIR_ERR_CONFIG_UNSUPPORTED,
+                               _("':' not allowed in SHAKE source volume name '%s'"),
+                               src->path);
+                goto cleanup;
+            }
+
+            virBufferStrcat(&buf, "shake:", src->path, NULL);
+            ret = virBufferContentAndReset(&buf);
             break;
 
         case VIR_STORAGE_NET_PROTOCOL_RBD:
@@ -13292,6 +13305,9 @@ qemuParseCommandLine(virCapsPtr qemuCaps,
                 case VIR_STORAGE_NET_PROTOCOL_NBD:
                     if (qemuParseNBDString(disk) < 0)
                         goto error;
+                    break;
+                case VIR_STORAGE_NET_PROTOCOL_SHAKE:
+                    // TODO for shake
                     break;
                 case VIR_STORAGE_NET_PROTOCOL_RBD:
                     /* old-style CEPH_ARGS env variable is parsed later */

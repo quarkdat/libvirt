@@ -76,6 +76,7 @@ VIR_ENUM_IMPL(virStorageNetProtocol, VIR_STORAGE_NET_PROTOCOL_LAST,
               "none",
               "nbd",
               "rbd",
+              "shake",
               "sheepdog",
               "gluster",
               "iscsi",
@@ -2486,6 +2487,9 @@ virStorageSourceParseBackingColon(virStorageSourcePtr src,
             goto cleanup;
         break;
 
+    case VIR_STORAGE_NET_PROTOCOL_SHAKE:
+        // TODO for shake
+        break;
     case VIR_STORAGE_NET_PROTOCOL_SHEEPDOG:
     case VIR_STORAGE_NET_PROTOCOL_LAST:
     case VIR_STORAGE_NET_PROTOCOL_NONE:
